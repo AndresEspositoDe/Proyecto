@@ -4,7 +4,12 @@
  */
 package Interface;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -34,9 +39,6 @@ public class Ventana1 extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         CargarArchivo = new javax.swing.JButton();
         MostrarDireccion = new javax.swing.JTextField();
-        Si = new javax.swing.JButton();
-        No = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -62,25 +64,6 @@ public class Ventana1 extends javax.swing.JFrame {
         });
         getContentPane().add(MostrarDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 280, -1));
 
-        Si.setText("Si");
-        Si.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SiActionPerformed(evt);
-            }
-        });
-        getContentPane().add(Si, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, -1, -1));
-
-        No.setText("No");
-        No.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(No, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, -1, -1));
-
-        jLabel1.setText("Deseas Guardar el archivo seleccionado?");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, -1));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -91,6 +74,48 @@ public class Ventana1 extends javax.swing.JFrame {
             File f = elegir.getSelectedFile();
             String nombrearchivo = f.getAbsolutePath();
             MostrarDireccion.setText(nombrearchivo);
+            int mensaje = JOptionPane.showInternalConfirmDialog(null, "Quieres guardar este archivo?");
+            if (mensaje == JOptionPane.YES_OPTION) {
+                if (MostrarDireccion.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "No tienes ningun archivo seleccionado");
+
+                } else {
+                    try {
+                        // Abre el archivo de entrada
+                        BufferedReader reader = new BufferedReader(new FileReader(nombrearchivo));
+
+                        // Abre el archivo de salida
+                        FileWriter writer = new FileWriter("test\\Data\\nuevo_amazon.txt");
+
+                        // Lee cada línea del archivo de entrada y la escribe en el archivo de salida
+                        String linea;
+                        while ((linea = reader.readLine()) != null) {
+                            writer.write(linea + "\n");
+                        }
+
+                        // Cierra los archivos
+                        reader.close();
+                        writer.close();
+
+                        JOptionPane.showMessageDialog(null, "Se ha guardado el archivo");
+
+                    } catch (IOException e) {
+                        JOptionPane.showMessageDialog(null, "No se ha podido guardar el archivo intentelo de nuevo");
+                        e.printStackTrace();
+                    }
+                    VentanaMenu vm1 = new VentanaMenu();
+                    vm1.setVisible(true);
+                    vm1.setLocationRelativeTo(null);
+                    this.dispose();
+                }
+            }
+            if (mensaje == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(null, "No se ha guardado ningun archivo");
+                VentanaMenu vm1 = new VentanaMenu();
+                vm1.setVisible(true);
+                vm1.setLocationRelativeTo(null);
+                this.dispose();
+            }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Cancelado");
@@ -101,27 +126,6 @@ public class Ventana1 extends javax.swing.JFrame {
     private void MostrarDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarDireccionActionPerformed
 
     }//GEN-LAST:event_MostrarDireccionActionPerformed
-
-    private void SiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiActionPerformed
-        if (MostrarDireccion.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "No tienes ningun archivo seleccionado");
-        } else {
-            VentanaMenu vm1 = new VentanaMenu();
-            vm1.setVisible(true);
-            vm1.setLocationRelativeTo(null);
-
-            JOptionPane.showMessageDialog(null, "Se ha guardado el archivo");
-            this.dispose();
-        }
-    }//GEN-LAST:event_SiActionPerformed
-
-    private void NoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoActionPerformed
-        VentanaMenu vm1 = new VentanaMenu();
-        vm1.setVisible(true);
-        vm1.setLocationRelativeTo(null);
-        JOptionPane.showMessageDialog(null, "No se ha guardado el archivo");
-        this.dispose();
-    }//GEN-LAST:event_NoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,9 +165,6 @@ public class Ventana1 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CargarArchivo;
     private javax.swing.JTextField MostrarDireccion;
-    private javax.swing.JButton No;
-    private javax.swing.JButton Si;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
