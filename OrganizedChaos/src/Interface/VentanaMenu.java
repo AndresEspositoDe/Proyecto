@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Interface;
-
+import Clases.Funciones;
+        
 /**
  *
  * @author andre
@@ -32,7 +33,6 @@ public class VentanaMenu extends javax.swing.JFrame {
         TituloMenu = new javax.swing.JLabel();
         BotonSalirMenu = new javax.swing.JButton();
         CargarArchivos = new javax.swing.JButton();
-        ActualizarRepositorio = new javax.swing.JButton();
         ReporteDisponibilidadAlmacen = new javax.swing.JButton();
         RealizarPedido = new javax.swing.JButton();
         SolicitarProductosOtroAlmacen = new javax.swing.JButton();
@@ -67,7 +67,7 @@ public class VentanaMenu extends javax.swing.JFrame {
         });
         FondoMenu.add(BotonSalirMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(508, 12, -1, -1));
 
-        CargarArchivos.setText("1. Cargar archivo");
+        CargarArchivos.setText("1. Cargar y actualizacion de archivos");
         CargarArchivos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CargarArchivosActionPerformed(evt);
@@ -75,34 +75,31 @@ public class VentanaMenu extends javax.swing.JFrame {
         });
         FondoMenu.add(CargarArchivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 118, -1, -1));
 
-        ActualizarRepositorio.setText("2. Actualizar Repositorio");
-        ActualizarRepositorio.addActionListener(new java.awt.event.ActionListener() {
+        ReporteDisponibilidadAlmacen.setText("2. Reportes de disponibilidad por almacen");
+        ReporteDisponibilidadAlmacen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ActualizarRepositorioActionPerformed(evt);
+                ReporteDisponibilidadAlmacenActionPerformed(evt);
             }
         });
-        FondoMenu.add(ActualizarRepositorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 146, -1, -1));
+        FondoMenu.add(ReporteDisponibilidadAlmacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
 
-        ReporteDisponibilidadAlmacen.setText("3. Reportes de disponibilidad por almacen");
-        FondoMenu.add(ReporteDisponibilidadAlmacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 174, -1, -1));
+        RealizarPedido.setText("3. Realizar pedido");
+        FondoMenu.add(RealizarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
 
-        RealizarPedido.setText("4. Realizar pedido");
-        FondoMenu.add(RealizarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 202, -1, -1));
+        SolicitarProductosOtroAlmacen.setText("4. Solicitar productos a otro almacén");
+        FondoMenu.add(SolicitarProductosOtroAlmacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
 
-        SolicitarProductosOtroAlmacen.setText("5. Solicitar productos a otro almacén");
-        FondoMenu.add(SolicitarProductosOtroAlmacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 230, -1, -1));
+        AgregarAlmacen.setText("5. Agregar un nuevo almacén");
+        FondoMenu.add(AgregarAlmacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
 
-        AgregarAlmacen.setText("6. Agregar un nuevo almacén");
-        FondoMenu.add(AgregarAlmacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 258, -1, -1));
+        AgregarCamino.setText("6. Agregar un nuevo camino");
+        FondoMenu.add(AgregarCamino, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
 
-        AgregarCamino.setText("7. Agregar un nuevo camino");
-        FondoMenu.add(AgregarCamino, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 286, -1, -1));
+        StockAlmacen.setText("7. Gestión de stock de un almacén");
+        FondoMenu.add(StockAlmacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
 
-        StockAlmacen.setText("8. Gestión de stock de un almacén");
-        FondoMenu.add(StockAlmacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 314, -1, -1));
-
-        MostrarGrafo.setText("9. Mostrar grafo");
-        FondoMenu.add(MostrarGrafo, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 342, -1, -1));
+        MostrarGrafo.setText("8. Mostrar grafo");
+        FondoMenu.add(MostrarGrafo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
 
         SubTitulo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         SubTitulo.setText("Dale Click a la opcion que prefiera:");
@@ -128,7 +125,7 @@ public class VentanaMenu extends javax.swing.JFrame {
 
     private void CargarArchivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarArchivosActionPerformed
         this.dispose();
-        Ventana1 v2 = new Ventana1();
+        Ventana1_1 v2 = new Ventana1_1();
         v2.setVisible(true);
         v2.setLocationRelativeTo(null);
 
@@ -138,9 +135,9 @@ public class VentanaMenu extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_CerrarProgramaActionPerformed
 
-    private void ActualizarRepositorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarRepositorioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ActualizarRepositorioActionPerformed
+    private void ReporteDisponibilidadAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteDisponibilidadAlmacenActionPerformed
+        
+    }//GEN-LAST:event_ReporteDisponibilidadAlmacenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,7 +179,6 @@ public class VentanaMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ActualizarRepositorio;
     private javax.swing.JButton AgregarAlmacen;
     private javax.swing.JButton AgregarCamino;
     private javax.swing.JButton BotonSalirMenu;
